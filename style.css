@@ -1,0 +1,88 @@
+body {
+    background: #fff6f9;
+    font-family: 'Segoe UI', sans-serif;
+    color: #5c4033;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+  
+  .container {
+    text-align: center;
+    max-width: 500px;
+    padding: 20px;
+  }
+  
+  .heart {
+    width: 100px;
+    height: 90px;
+    background-color: #ff5ca2;
+    position: relative;
+    margin: 20px auto;
+    animation: beat 1s infinite;
+  }
+  
+  .heart::before,
+  .heart::after {
+    content: "";
+    position: absolute;
+    width: 100px;
+    height: 90px;
+    background-color: #ff5ca2;
+    border-radius: 50%;
+  }
+  
+  .heart::before {
+    top: -50px;
+    left: 0;
+  }
+  
+  .heart::after {
+    left: 50px;
+    top: 0;
+  }
+  
+  @keyframes beat {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+  }
+  
+  .contador {
+    font-size: 20px;
+    margin-top: 10px;
+  }
+  
+  .carta {
+    margin-top: 30px;
+    background: #ffe4ec;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  }
+  /* Agrega esto al final del CSS existente */
+
+.sorpresa {
+    display: none;
+    margin-top: 20px;
+    background-color: #fff0f5;
+    padding: 15px;
+    border-radius: 10px;
+    font-style: italic;
+    color: #c71585;
+    font-size: 16px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    animation: fadeIn 1s ease-in-out forwards;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
