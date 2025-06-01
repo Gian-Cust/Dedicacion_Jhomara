@@ -3,7 +3,7 @@
 // ----- CONFIGURACIÓN DE FECHAS -----
 // FECHA DE DESBLOQUEO DE LA PÁGINA (Año, Mes (0-11), Día, Hora, Minuto, Segundo)
 // Para el 3 de Junio a las 00:00 horas
-const FECHA_DESBLOQUEO = new Date(2025, 5, 3, 21, 45, 0); // Mes 5 es Junio (0=Enero, 1=Febrero, ..., 5=Junio)
+const FECHA_DESBLOQUEO = new Date(2025, 5, 3, 21, 49, 00); // Mes 5 es Junio (0=Enero, 1=Febrero, ..., 5=Junio)
 // ¡¡¡ AJUSTA EL AÑO SI ES NECESARIO (ej. si es para 2025, pon 2025) !!!
 
 // FECHA DE INICIO DE LA RELACIÓN (para el contador de "Un mes de amor")
