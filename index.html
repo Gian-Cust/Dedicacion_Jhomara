@@ -4,34 +4,103 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Para Jhomara 💖</title>
+  <title>Para Mi Jhomara 💖 Un Mes Juntos</title>
   <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600&display=swap"
+    rel="stylesheet">
 </head>
 
 <body>
-  <div class="container">
-    <div class="heart" onclick="tocarMusica()"></div>
-    <h1>Jhomara Jaramillo</h1>
-    <p class="contador">Juntos desde hace <span id="tiempo"></span></p>
+  <!-- Pantalla de Pre-Carga / "Coming Soon" -->
+  <div id="pre-carga" class="pantalla-inicial"> <!-- Visible por defecto -->
+    <h1>¡Preparando una Sorpresa Mágica! ✨</h1>
+    <p>Esta página especial para ti, mi Jhomara, estará lista el:</p>
+    <p style="font-weight: bold; font-size: 1.3em;">03 de Junio</p>
+    <p>Tiempo restante:</p>
+    <p id="cuenta-regresiva" style="font-family: 'Poppins', sans-serif; font-size: 1.5em; color: #ff69b4; margin-top:10px; text-shadow: 1px 1px 2px rgba(0,0,0,0.1);"></p>
+  </div>
 
-    <div class="carta">
+  <!-- Pantalla de Bienvenida (inicialmente oculta) -->
+  <div id="bienvenida" class="pantalla-inicial oculto">
+    <h1>Hola, mi Jhomara Preciosa 💖</h1>
+    <p>¿Lista para revivir la magia de nuestro primer mes?</p>
+    <button onclick="entrarSitio()">Entrar a Nuestro Mundo Mágico</button>
+  </div>
+
+  <!-- Contenido Principal (inicialmente oculto) -->
+  <div class="container oculto" id="contenido">
+    <div class="flying-hearts-container" id="flyingHeartsContainer">
+      <!-- Corazones voladores se agregarán aquí por JS -->
+    </div>
+
+    <div class="heart-music-container">
+      <div class="heart" onclick="tocarMusica()">
+        <span class="tooltip-text">¡Toca para la sorpresa musical!</span>
+      </div>
+    </div>
+
+    <h1>Mi Adorada Jhomara Jaramillo</h1>
+    <p class="contador">Un mes de amor: <span id="tiempo"></span></p>
+
+    <div class="carrusel-container">
+      <div class="carrusel">
+        <img src="img/img1.jpg" alt="Recuerdo Juntos 1" class="slide activo">
+        <img src="img/img2.jpg" alt="Recuerdo Juntos 2" class="slide">
+        <img src="img/img3.jpg" alt="Recuerdo Juntos 3" class="slide">
+        <img src="img/foto1.jpg" alt="Recuerdo Juntos 4" class="slide">
+        <img src="img/foto2.jpg" alt="Recuerdo Juntos 5" class="slide">
+        <img src="img/foto3.jpg" alt="Recuerdo Juntos 6" class="slide">
+      </div>
+    </div>
+
+   <div class="carta">
+      <h2>Mi Corazón Abierto Para Ti:</h2>
       <p>
-        Jhomara, solo quiero que sepas algo muy simple y profundo:
-        <br>
-        <strong>!No estás sola ahora somos un equipo¡</strong>
-        <br><br>
-        "Desde el 3 de mayo de 2025, cada segundo ha cobrado un nuevo significado, porque tú estás en él.
-        Sin importar lo que depare el destino, aquí estaré, a tu lado. Siempre. 💫"
+      Quiero que siempre tengas presente, mi amor, que nuestro norte es el mismo: labrar juntos nuestra felicidad y esa anhelada tranquilidad.<br><br>
+      Y eso, mi Jhomara, es una de las cualidades que más atesoro de ti. Tu serenidad es mi calma; si tú brillas, yo también encuentro mi luz.
+      <br><br>
+      Ay, Jhomara Jaramillo… mi alma se llena de gratitud por tenerte en cada instante, en cada proyecto que emprendo, en cada sueño que persigo.
+      <br><br>
+      Reconozco que no soy un ser perfecto, que a veces la frustración me visita y que tengo mis propias sombras –como todos las tenemos–, pero te acepto con cada matiz de tu ser, y te elijo a ti, una y mil veces, con todo lo que eres.
+      <br><br>
+      Quizás hoy no represente mi versión más completa, ni tenga el universo entero para entregarte… pero si me concedes el regalo de tu confianza, te prometo emprender una transformación profunda, reorientar mi sendero, y demostrarte que apostar por este amor es invertir en una dicha auténtica y duradera.
+      <br><br>
+      Es cierto, estoy en un camino de evolución constante. Pero contigo a mi lado, verás cómo, paso a paso, conquistaremos cada meta. En cada logro, en cada nueva aventura que emprendamos… tu esencia estará imborrablemente presente.
+      <br><br>
+      Anhelo compartir contigo una perspectiva renovada de la vida, una manera más luminosa de encarar cada nuevo día. Solo te pido la pureza de tu sinceridad, la fortaleza de tu confianza y la valentía de compartir conmigo si algo inquieta tu corazón.
+      <br><br>
+      Porque si alguna vez sientes que el mundo entero se desploma sobre ti… yo me convertiré en tu refugio y desafiaré al mundo a tu lado. ⭐
+      <br><br>
+      Puede que estas palabras resuenen con un toque de romanticismo exacerbado, lo sé. Somos jóvenes y el futuro a veces se dibuja incierto… pero mientras lo trazamos juntos, permíteme seguir revelándote la inmensidad de este sentimiento que me une a ti.
+      <br><br>
+      Y si el destino nos sonríe y la vida me concede ese honor… mi mayor anhelo es verte caminar hacia mí, dispuesta a unir nuestras vidas para siempre.
+      <br><br>
+      Te amo con una intensidad que a veces me desborda, Jhomara. Hoy te confío la llave más preciada, la de mi corazón; solo te ruego que la atesores con ternura, pues mi intención jamás será causarte una herida.
+      <br><br>
+      Sin importar las tormentas o los vientos que puedan soplar… aquí me encontrarás firme, mi amor, siempre para ti.
+      <br><br>
+      Confía en este ser que te ama con una devoción que algunos llamarían locura… Y nunca olvides esto: la etapa de caminar en soledad ha concluido para ti.
+      <br><br>
+      Ahora, nuestros senderos se entrelazan. 🧵
+      <br><br>
+      Descansa con la paz de saber que, al despertar, mi primer y último pensamiento serás tú: tu mirada que me cautiva y esa sonrisa tuya que tiene el poder de iluminar mis días. ✨
       </p>
     </div>
 
     <div class="sorpresa" id="sorpresa">
-      Siempre has sido, eres y serás mi refugio, ese rincón donde todo está bien simplemente porque estás tú. 💌
+      ¡Feliz Primer Mes, mi amor eterno! Gracias por este mes maravilloso y por ser la luz de mi vida. 💕 Te amo
+      infinitamente.
     </div>
   </div>
 
-  <audio id="musica" src="musica.mp3/audio.mpeg"></audio>
+  <!-- 
+    IMPORTANTE: Verifica la ruta al archivo de música.
+    Si tienes una carpeta "musica" con "audio.mp3" dentro, usa "musica/audio.mp3".
+    Si "audio.mp3" está en la misma carpeta que "index.html", usa "audio.mp3".
+  -->
+  <audio id="musica" src="musica.mp3/audio.mp3" loop></audio> 
   <script src="script.js"></script>
 </body>
-
 </html>
