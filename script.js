@@ -5,7 +5,7 @@ window.addEventListener("load", () => {
   const countdownDisplay = document.getElementById('countdown');
 
   // MODO DE PRUEBA: Usa una fecha del pasado para que se desbloquee al instante.
-  const fechaDesbloqueo = new Date(2025, 5, 27, 0, 0, 0, 0); // 27 de junio de 2025 a
+  const fechaDesbloqueo = new Date(2025, 5, 24, 0, 0, 0, 0); // 27 de junio de 2025 a
 
   // MODO FINAL: ¡Usa esta línea antes de enviárselo a Jhomara!
   // const fechaDesbloqueo = new Date(2025, 5, 23, 21, 19, 0);
