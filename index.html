@@ -1,106 +1,66 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Para Mi Jhomara 💖 Un Mes Juntos</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>Una Constelación Para Ti 💖</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
-  <!-- Pantalla de Pre-Carga / "Coming Soon" -->
-  <div id="pre-carga" class="pantalla-inicial"> <!-- Visible por defecto -->
-    <h1>¡Preparando una Sorpresa Mágica! ✨</h1>
-    <p>Esta página especial para ti, mi Jhomara, estará lista el:</p>
-    <p style="font-weight: bold; font-size: 1.3em;">03 de Junio</p>
-    <p>Tiempo restante:</p>
-    <p id="cuenta-regresiva" style="font-family: 'Poppins', sans-serif; font-size: 1.5em; color: #ff69b4; margin-top:10px; text-shadow: 1px 1px 2px rgba(0,0,0,0.1);"></p>
-  </div>
 
-  <!-- Pantalla de Bienvenida (inicialmente oculta) -->
-  <div id="bienvenida" class="pantalla-inicial oculto">
-    <h1>Hola, mi Jhomara Preciosa 💖</h1>
-    <p>¿Lista para revivir la magia de nuestro primer mes?</p>
-    <button onclick="entrarSitio()">Entrar a Nuestro Mundo Mágico</button>
-  </div>
-
-  <!-- Contenido Principal (inicialmente oculto) -->
-  <div class="container oculto" id="contenido">
-    <div class="flying-hearts-container" id="flyingHeartsContainer">
-      <!-- Corazones voladores se agregarán aquí por JS -->
+  <!-- PANTALLA DE CARGA CON TEMÁTICA ESTELAR -->
+  <div id="pre-carga" class="pantalla-inicial">
+    <div class="contenido-pre-carga">
+      <h1>Un evento celestial está por ocurrir...</h1>
+      <p>La constelación "Jhomarita 💖" se alineará en:</p>
+      <div id="countdown" class="countdown-timer"></div>
     </div>
+  </div>
 
-    <div class="heart-music-container">
-      <div class="heart" onclick="tocarMusica()">
-        <span class="tooltip-text">¡Toca para la sorpresa musical!</span>
+  <div id="star-background"></div>
+
+  <!-- Contenido principal, oculto por defecto -->
+  <main id="main-content" class="container hidden">
+    <h1 class="titulo">Una Aventura Escrita en las Estrellas ✨</h1>
+    <button id="btnEmpezar" class="btn" onclick="empezarJuego()">🚀 Iniciar Viaje Estelar</button>
+
+    <section id="juegos" class="hidden">
+      <!-- Preguntas del 1 al 9 -->
+      <div class="juego hidden" id="juego1"><p>¿Cuál era el nombre que te iban a poner?</p><input type="text" id="resp1" autocomplete="off" /><button class="btn" onclick="verificarResp(1)">Responder</button></div>
+      <div class="juego hidden" id="juego2"><p>¿Dónde fue nuestro primer beso?</p><input type="text" id="resp2" autocomplete="off" /><button class="btn" onclick="verificarResp(2)">Responder</button></div>
+      <div class="juego hidden" id="juego3"><p>Si tuvieras que elegir: Opción 1 (Gomitas, Torta, Frappuccinos) o Opción 2 (Dormir 3 horas más)... ¿qué prefieres?</p><input type="text" id="resp3" placeholder="Escribe 'Opción 1' o 'Opción 2'" autocomplete="off" /><button class="btn" onclick="verificarResp(3)">Decidir</button></div>
+      <div class="juego hidden" id="juego4"><p>¿Qué recuerdo te llevaste de la playa?</p><input type="text" id="resp4" autocomplete="off" /><button class="btn" onclick="verificarResp(4)">Responder</button></div>
+      <div class="juego hidden" id="juego5"><p>¿Donde te acompañe la primera vez que salimos?</p><input type="text" id="resp5" autocomplete="off" /><button class="btn" onclick="verificarResp(5)">Responder</button></div>
+      <div class="juego hidden" id="juego6"><p>¿Recuerdas la primera canción que te dediqué en la primera web que te cree?</p><input type="text" id="resp6" autocomplete="off" /><button class="btn" onclick="verificarResp(6)">Recordar</button></div>
+      <div class="juego hidden" id="juego7"><p>¿Eres tóxica? 🙃</p><input type="text" id="resp7" autocomplete="off" /><button class="btn" onclick="verificarResp(7)">Responder</button></div>
+      <div class="juego hidden" id="juego8"><p>¿Eres celosa? 😜</p><input type="text" id="resp8" autocomplete="off" /><button class="btn" onclick="verificarResp(8)">Responder</button></div>
+      <div class="juego hidden" id="juego9"><p>Ahora mismo... ¿qué color estás usando? 👀</p><input type="text" id="resp9" placeholder="No seas tímida..." autocomplete="off" /><button class="btn" onclick="verificarResp(9)">Contar</button></div>
+
+      <!-- 10. Mensaje Final -->
+      <div class="juego hidden" id="juego10">
+        <p>Para terminar, deja un deseo para nosotros pidiéndoselo a una estrella fugaz 🌠</p>
+        <input type="text" id="resp10" autocomplete="off" />
+        <button class="btn" onclick="finalizarJuego()">Ver la Sorpresa Final</button>
       </div>
-    </div>
+    </section>
 
-    <h1>Mi Adorada Jhomara Jaramillo</h1>
-    <p class="contador">Un mes de amor: <span id="tiempo"></span></p>
+    <div id="mensajeFlotante" class="mensaje hidden"></div>
 
-    <div class="carrusel-container">
-      <div class="carrusel">
-        <img src="img/img1.jpg" alt="Recuerdo Juntos 1" class="slide activo">
-        <img src="img/img2.jpg" alt="Recuerdo Juntos 2" class="slide">
-        <img src="img/img3.jpg" alt="Recuerdo Juntos 3" class="slide">
-        <img src="img/foto1.jpg" alt="Recuerdo Juntos 4" class="slide">
-        <img src="img/foto2.jpg" alt="Recuerdo Juntos 5" class="slide">
-        <img src="img/foto3.jpg" alt="Recuerdo Juntos 6" class="slide">
+    <section id="carta" class="hidden">
+      <div id="tiempoContador" class="contador-final"></div>
+      <div id="textoCarta" class="texto-carta"></div>
+      <div id="mediaContainer" class="galeria"></div>
+      <div class="controles-media">
+        <button onclick="cambiarMedia(-1)">☾</button>
+        <button onclick="cambiarMedia(1)">☽</button>
       </div>
-    </div>
+      <audio id="audio" src="audio/seguro.mp3" preload="auto" loop></audio>
+    </section>
+  </main>
 
-   <div class="carta">
-      <h2>Mi Corazón Abierto Para Ti:</h2>
-      <p>
-      Quiero que siempre tengas presente, mi amor, que nuestro camnino es el mismo TU Y YO juntos nuestra felicidad y esa anhelada tranquilidad.<br><br>
-      Y eso, mi Jhomara, es una de las cualidades que más atesoro de ti. Tu serenidad es mi calma; si tú brillas, yo también encuentro mi luz.
-      <br><br>
-      Ay, Jhomara Jaramillo… mi alma se llena de gratitud por tenerte en cada instante, en cada proyecto que emprendo, en cada sueño que persigo.
-      <br><br>
-      Reconozco que no soy un ser perfecto, que a veces la frustración me visita y que tengo mis propias sombras –como todos las tenemos–, pero te acepto con cada matiz de tu ser, y te elijo a ti, una y mil veces, con todo lo que eres.
-      <br><br>
-      Quizás hoy no represente mi versión más completa, ni tenga el universo entero para entregarte… pero si me concedes el regalo de tu confianza, te prometo emprender una transformación profunda, reorientar mi sendero, y demostrarte que apostar por este amor es invertir en una dicha auténtica y duradera.
-      <br><br>
-      Es cierto, estoy en un camino de evolución constante. Pero contigo a mi lado, verás cómo, paso a paso, conquistaremos cada meta. En cada logro, en cada nueva aventura que emprendamos… tu esencia estará imborrablemente presente.
-      <br><br>
-      Anhelo compartir contigo una perspectiva renovada de la vida, una manera más luminosa de encarar cada nuevo día. Solo te pido la pureza de tu sinceridad, la fortaleza de tu confianza y la valentía de compartir conmigo si algo inquieta tu corazón.
-      <br><br>
-      Porque si alguna vez sientes que el mundo entero se desploma sobre ti… yo me convertiré en tu refugio y desafiaré al mundo a tu lado. ⭐
-      <br><br>
-      Puede que estas palabras resuenen con un toque de romanticismo exacerbado, lo sé. Somos jóvenes y el futuro a veces se dibuja incierto… pero mientras lo trazamos juntos, permíteme seguir revelándote la inmensidad de este sentimiento que me une a ti.
-      <br><br>
-      Y si el destino nos sonríe y la vida me concede ese honor… mi mayor anhelo es verte caminar hacia mí, dispuesta a unir nuestras vidas para siempre.
-      <br><br>
-      Te amo con una intensidad que a veces me desborda, Jhomara. Hoy te confío la llave más preciada, la de mi corazón; solo te ruego que la atesores con ternura, pues mi intención jamás será causarte una herida.
-      <br><br>
-      Sin importar las tormentas o los vientos que puedan soplar… aquí me encontrarás firme, mi amor, siempre para ti.
-      <br><br>
-      Confía en este ser que te ama con una devoción que algunos llamarían locura… Y nunca olvides esto: la etapa de caminar en soledad ha concluido para ti.
-      <br><br>
-      Ahora, nuestros senderos se entrelazan. 🧵
-      <br><br>
-      Descansa con la paz de saber que, al despertar, mi primer y último pensamiento serás tú: tu mirada que me cautiva y esa sonrisa tuya que tiene el poder de iluminar mis días. ✨
-      </p>
-    </div>
-
-    <div class="sorpresa" id="sorpresa">
-      ¡Feliz Primer Mes, mi amor eterno! Gracias por este mes maravilloso y por ser la luz de mi vida. 💕 Te amo
-      infinitamente.
-    </div>
-  </div>
-
-  <!-- 
-    IMPORTANTE: Verifica la ruta al archivo de música.
-    Si tienes una carpeta "musica" con "audio.mp3" dentro, usa "musica/audio.mp3".
-    Si "audio.mp3" está en la misma carpeta que "index.html", usa "audio.mp3".
-  -->
-  <audio id="musica" src="musica.mp3/audio.mp3" loop></audio> 
   <script src="script.js"></script>
 </body>
 </html>
