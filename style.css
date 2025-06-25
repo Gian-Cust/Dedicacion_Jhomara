@@ -1,379 +1,250 @@
-/* style.css */
-
+/* --- NUEVA TEMÁTICA CELESTIAL --- */
 :root {
-  /* === Paleta de Colores Principal === */
-  --color-primary: #ff69b4;        /* HotPink - Usado para botones, corazón, títulos de carta */
-  --color-primary-dark: #ff1493;   /* DeepPink - Hover de botón */
-  --color-secondary: #e83e8c;      /* Rosa más fuerte - Títulos en container, texto sorpresa */
-  --color-accent: #ff79c6;         /* Rosa más claro - Corazones voladores */
-  
-  /* === Colores de Texto === */
-  --text-light: #ffffff;
-  --text-dark: #4a3b34;            /* Marrón suave - Texto principal del cuerpo */
-  --text-medium: #5c4033;          /* Marrón para la carta */
-  --text-muted: #6c5249;           /* Para el contador */
-  --text-preloader: #555;          /* Gris para pre-carga */
-  --text-tooltip: #ffffff;
-  
-  /* === Fondos === */
-  --bg-body: #fff0f5;              /* LavenderBlush */
-  --bg-pantalla-inicial-gradient: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);
-  --bg-preloader-gradient: linear-gradient(135deg, #f8f8ff 0%, #ffffff 100%);
-  --bg-carta: #ffffff;
-  --bg-sorpresa: #ffebf1;          /* Rosa muy pálido */
-  --bg-tooltip: #333333;           /* Gris oscuro para tooltip */
-
-  /* === Bordes === */
-  --border-carta: #ffe0e9;
-
-  /* === Tipografía === */
-  --font-display: 'Pacifico', cursive;        /* Para títulos destacados y románticos */
-  --font-body: 'Poppins', 'Segoe UI', sans-serif; /* Para texto general */
-
-  /* === Tamaños Específicos === */
-  --heart-base-size: 100px;
-  --heart-base-size-mobile: 80px;
+  --bg-dark: #0a0a1f;
+  --primary-glow: #e0c3fc;
+  --secondary-glow: #8ec5fc;
+  --text-color: #f0f0f8;
+  --gold-accent: #ffd700;
+  --glass-bg: rgba(20, 20, 40, 0.65); /* Un poco más opaco para legibilidad */
+  --glass-border: 1px solid rgba(255, 255, 255, 0.2);
+  --shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
 }
 
-/* === Estilos Generales del Body === */
+/* +++ AÑADIDO: Estilo de la barra de scroll para que coincida con el tema +++ */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-dark);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--secondary-glow);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-glow);
+}
+
 body {
-  background: var(--bg-body);
-  font-family: var(--font-body);
-  color: var(--text-dark);
   margin: 0;
-  overflow-x: hidden; 
-  line-height: 1.6;
-}
-
-/* === Estilos para Pantallas de Carga y Bienvenida === */
-.pantalla-viewport,
-.pantalla-inicial {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--bg-dark);
+  color: var(--text-color);
   text-align: center;
-  padding: 20px;
-  box-sizing: border-box;
-  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  /* --- MODIFICADO: Eliminamos padding y overflow para un control más preciso por sección --- */
+  /* padding: 2rem; <-- Se manejará por sección */
+  /* overflow: hidden; <-- ESTA ERA LA LÍNEA PROBLEMÁTICA */
+  overflow-x: hidden; /* Prevenimos scroll horizontal no deseado */
+  position: relative;
 }
 
-#pre-carga {
-  background: var(--bg-preloader-gradient);
-  color: var(--text-preloader);
-  font-family: var(--font-body);
-}
-
-#pre-carga h1 {
-  font-family: var(--font-display);
-  color: var(--color-primary);
-  font-size: clamp(2rem, 10vw, 3rem);
-  margin-bottom: 1rem;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-}
-
-#pre-carga p {
-  font-size: clamp(1rem, 5vw, 1.2rem);
-  margin-bottom: 1rem;
-  font-weight: 300;
-}
-
-.pantalla-inicial {
-  background: var(--bg-pantalla-inicial-gradient);
-  color: var(--text-light);
-}
-
-.pantalla-inicial.fade-out,
-#pre-carga.fade-out {
-  opacity: 0;
-  transform: scale(0.9);
-  pointer-events: none;
-}
-
-.pantalla-inicial h1 {
-  font-family: var(--font-display);
-  font-size: clamp(2rem, 10vw, 3.5rem);
-  margin-bottom: 1rem;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-}
-
-.pantalla-inicial p {
-  font-size: clamp(1rem, 5vw, 1.3rem);
-  margin-bottom: 2rem;
-  font-weight: 300;
-}
-
-.pantalla-inicial button {
-  padding: 12px 25px;
-  font-size: clamp(0.9rem, 4vw, 1.1rem);
-  background: var(--color-primary);
-  border: none;
-  color: var(--text-light);
-  border-radius: 30px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-}
-
-.pantalla-inicial button:hover {
-  background-color: var(--color-primary-dark);
-  transform: translateY(-2px);
-}
-
-/* === Contenedor Principal del Contenido === */
-.container {
-  text-align: center;
-  max-width: 700px;
-  margin: 30px auto;
-  padding: 20px;
-  position: relative; 
-  opacity: 0; 
-  animation: fadeInContent 1s ease-in-out forwards 0.5s;
-}
-
-@keyframes fadeInContent {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.oculto {
-  display: none !important; 
-}
-
-/* === Corazones Voladores Decorativos === */
-.flying-hearts-container {
+#star-background {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  pointer-events: none; 
-  overflow: hidden;
-  z-index: 999; 
+  z-index: -1;
+  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
 }
 
-.flying-heart {
+.star {
   position: absolute;
-  font-size: 20px; 
-  color: var(--color-accent);
-  animation: fly 5s linear infinite;
-  user-select: none; 
+  background-color: white;
+  border-radius: 50%;
+  animation: twinkle 5s infinite alternate;
 }
 
-@keyframes fly {
-  0% {
-    transform: translateY(100vh) scale(0.5);
-    opacity: 1;
-  }
-  50% {
-    opacity: 1; 
-  }
-  100% {
-    transform: translateY(-100px) scale(1.5); 
-    opacity: 0;
-  }
+@keyframes twinkle {
+  0% { opacity: 0.2; transform: scale(0.8); }
+  100% { opacity: 1; transform: scale(1.2); }
 }
 
-/* === Corazón Interactivo para Música === */
-.heart-music-container {
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem; /* +++ AÑADIDO: Padding aquí para centrar el contenido principal */
+  position: relative;
+  z-index: 2;
+  min-height: 100vh; /* +++ AÑADIDO: Asegura que el contenedor principal ocupe la pantalla */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.titulo {
+  font-family: 'Pacifico', cursive;
+  font-size: 3rem;
+  color: var(--gold-accent);
+  text-shadow: 0 0 10px var(--gold-accent);
+}
+
+.hidden { display: none !important; }
+
+/* --- PANTALLA DE CARGA Y COUNTDOWN --- */
+.pantalla-inicial {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+  color: var(--text-color);
   display: flex;
   justify-content: center;
-  align-items: center; 
-  padding: 20px 0; 
-  /* Aumentamos el min-height para dar espacio al corazón y al tooltip que estará arriba */
-  min-height: calc(var(--heart-base-size) + 70px); /* 70px es un estimado para el tooltip */
+  align-items: center;
+  text-align: center;
+  z-index: 9999;
+  padding: 1rem;
+  transition: opacity 1.5s ease-out;
 }
 
-.heart {
-  width: var(--heart-base-size);
-  height: var(--heart-base-size);
-  background-color: var(--color-primary);
-  position: relative;
-  margin: 0 auto; 
-  animation: beat 1.2s infinite cubic-bezier(0.215, 0.610, 0.355, 1);
+.pantalla-inicial.fade-out { opacity: 0; pointer-events: none; }
+.contenido-pre-carga h1 { font-family: 'Pacifico', cursive; font-size: 2.5rem; color: var(--gold-accent); }
+.contenido-pre-carga p { font-size: 1.2rem; }
+.countdown-timer { font-size: 2.5rem; font-weight: 600; margin-top: 2rem; letter-spacing: 2px; text-shadow: 0 0 5px var(--secondary-glow); }
+
+/* --- BOTONES E INPUTS --- */
+.btn {
+  background: linear-gradient(45deg, var(--primary-glow), var(--secondary-glow));
+  color: #1c1c3c;
+  padding: 0.8rem 2.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 50px;
   cursor: pointer;
-  /* Rotación para que la punta apunte hacia abajo */
-  transform: rotate(45deg); 
-  /* Ajuste de margen para que los lóbulos no se corten por arriba
-     El corazón base está rotado, así que los "bordes" ahora son diagonales.
-     Un margen superior en .heart puede ayudar.
-  */
-  margin-top: calc(var(--heart-base-size) * 0.3); /* Ajusta este valor si es necesario */
-  margin-bottom: calc(var(--heart-base-size) * 0.1); /* Espacio inferior */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 0 20px rgba(224, 195, 252, 0.4);
+  margin-top: 1.5rem;
 }
 
-.heart::before,
-.heart::after {
-  content: "";
-  position: absolute;
-  width: var(--heart-base-size);
-  height: var(--heart-base-size);
-  background-color: inherit;
-  border-radius: 50%; 
+.btn:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 0 30px rgba(142, 197, 252, 0.6);
 }
 
-/* Con .heart rotado 45deg: */
-.heart::before { 
-  /* Este será el lóbulo superior izquierdo */
-  top: 0; 
-  left: calc(var(--heart-base-size) / -2); /* Mitad hacia la izquierda */
+/* --- MODIFICADO: Separamos las reglas de .juego y #carta para darles propiedades distintas --- */
+.juego {
+  margin-top: 2rem;
+  padding: 2rem;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border: var(--glass-border);
+  box-shadow: var(--shadow);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
-.heart::after { 
-  /* Este será el lóbulo superior derecho */
-  top: calc(var(--heart-base-size) / -2); /* Mitad hacia arriba */
-  left: 0;
-}
+.juego.active { opacity: 1; transform: translateY(0); }
+.juego p { font-size: 1.4rem; font-weight: 400; line-height: 1.6; margin-bottom: 1.5rem; }
 
-.tooltip-text {
-  visibility: hidden;
-  width: 170px; 
-  background-color: var(--bg-tooltip);
-  color: var(--text-tooltip);
+input[type="text"] {
+  padding: 0.8rem;
+  border: none;
+  border-bottom: 2px solid var(--primary-glow);
+  background: transparent;
+  width: 80%;
+  max-width: 400px;
+  font-size: 1.1rem;
   text-align: center;
-  border-radius: 6px;
-  padding: 8px 12px; 
-  position: absolute;
-  z-index: 10; 
-  
-  /* Posicionar encima del corazón */
-  bottom: calc(100% + 10px); /* 100% del .heart + 10px de espacio */
+  color: var(--text-color);
+  transition: border-color 0.3s;
+}
+
+input[type="text"]:focus { outline: none; border-bottom-color: var(--gold-accent); }
+
+/* --- ELEMENTOS DE LA INTERFAZ --- */
+#mensajeFlotante {
+  position: fixed;
+  bottom: 30px;
   left: 50%;
-  
-  /* Contrarrestar la rotación del corazón (45deg) y centrar */
-  transform: translateX(-50%) rotate(-45deg); 
-  transform-origin: center bottom; /* Rota desde el centro de su base */
-  
-  opacity: 0;
-  transition: opacity 0.3s ease, transform 0.3s ease; 
-  font-size: 0.875rem; 
-  box-shadow: 0 2px 8px rgba(0,0,0,0.25); 
-  font-weight: 400;
-}
-
-.heart:hover .tooltip-text {
-  visibility: visible;
-  opacity: 1;
-  transform: translateX(-50%) rotate(-45deg) translateY(-5px); /* Pequeña elevación */
-}
-
-@keyframes beat {
-  /* Animación con el corazón apuntando hacia abajo */
-  0%, 100% { transform: scale(1) rotate(45deg); }
-  50% { transform: scale(1.15) rotate(45deg); }
-}
-
-/* === Estilos del Contenido Principal (Carta, Contador, Sorpresa) === */
-.container h1 {
-  font-family: var(--font-display);
-  color: var(--color-secondary);
-  font-size: 2.8rem;
-  margin-bottom: 10px;
-}
-
-.contador {
-  font-size: 1.1rem;
-  margin-top: 0;
-  margin-bottom: 25px;
-  color: var(--text-muted);
-  font-weight: 300;
-}
-
-.carta {
-  margin-top: 30px;
-  background: var(--bg-carta);
-  border: 1px solid var(--border-carta);
-  border-radius: 15px;
-  padding: 25px;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-  font-size: 1.05rem;
-  text-align: left;
-  color: var(--text-medium);
-}
-
-.carta h2 {
-  font-family: var(--font-display);
-  color: var(--color-primary);
-  text-align: center;
-  margin-top: 0;
-  font-size: 1.8rem;
-}
-
-.sorpresa {
-  display: none; 
-  margin-top: 30px;
-  background-color: var(--bg-sorpresa);
-  padding: 20px;
-  border-radius: 10px;
-  font-style: italic;
-  color: var(--color-secondary);
-  font-size: 1.1rem;
+  transform: translateX(-50%);
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  color: var(--text-color);
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  box-shadow: var(--shadow);
   font-weight: bold;
-  box-shadow: 0 4px 15px rgba(214, 51, 132, 0.2);
-  animation: fadeInSurprise 1s ease-in-out forwards;
+  z-index: 1000;
 }
 
-@keyframes fadeInSurprise {
-  from { opacity: 0; transform: scale(0.9); }
-  to { opacity: 1; transform: scale(1); }
-}
-
-/* === Carrusel de Imágenes === */
-.carrusel-container {
-  margin-top: 25px;
-  margin-bottom: 30px;
-  border-radius: 15px;
-  overflow: hidden; 
-  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-}
-
-.carrusel {
-  position: relative;
-  width: 100%;
-  height: 350px; 
-}
-
-.slide {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
+/* --- CARTA FINAL: LA SOLUCIÓN ESTÁ AQUÍ --- */
+#carta {
+  /* Estilos visuales que ya tenías */
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border: var(--glass-border);
+  box-shadow: var(--shadow);
+  
+  /* Transición */
   opacity: 0;
-  transition: opacity 1.2s ease-in-out;
-  object-fit: cover; 
-  border-radius: 15px; 
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  
+  /* +++ AÑADIDO: Aquí está la magia para el scroll +++ */
+  width: 100%; /* Ocupa el ancho del contenedor */
+  max-width: 900px; /* Mantiene el ancho máximo */
+  margin-top: 2rem;
+  padding: 3rem; /* Más padding para que el texto respire */
+  box-sizing: border-box;
+  overflow-y: auto; /* PERMITE EL SCROLL VERTICAL */
+  height: calc(100vh - 4rem); /* Ocupa casi toda la altura de la pantalla */
 }
 
-.slide.activo {
-  opacity: 1;
+#carta.active { opacity: 1; transform: translateY(0); }
+
+.contador-final {
+  margin-bottom: 2rem;
+  font-size: 1.2rem;
+  font-weight: 300;
+  padding: 0.5rem;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  color: var(--gold-accent);
+  display: inline-block;
+  text-align: center;
 }
 
-/* === Media Queries para Responsividad === */
-@media (max-width: 600px) {
-  .container h1 {
-    font-size: 2.2rem;
+#textoCarta { white-space: pre-wrap; font-size: 1.1rem; text-align: left; margin-bottom: 2rem; line-height: 1.7; }
+#mediaContainer { margin: 2rem 0; }
+#mediaContainer img, #mediaContainer video { max-width: 100%; max-height: 50vh; border-radius: 15px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); object-fit: contain; display: block; margin: 0 auto; }
+
+.controles-media button { font-size: 1.5rem; background-color: transparent; color: var(--primary-glow); border: none; cursor: pointer; transition: all 0.3s ease; }
+.controles-media button:hover { color: var(--gold-accent); transform: scale(1.2); }
+
+/* --- ESTRELLAS FUGACES (sin cambios) --- */
+.shooting-star { position: fixed; top: 50%; left: 50%; width: 2px; height: 2px; background: white; border-radius: 50%; box-shadow: 0 0 5px white, 0 0 10px white, 0 0 15px white; animation: shoot 3s linear infinite; z-index: 1001; }
+.shooting-star::before { content: ''; position: absolute; width: 150px; height: 1px; background: linear-gradient(90deg, white, transparent); transform: translateY(-50%) rotate(-45deg); transform-origin: left; }
+@keyframes shoot { 0% { transform: translate(100vw, -100vh) rotate(-45deg); opacity: 1; } 100% { transform: translate(-100vw, 100vh) rotate(-45deg); opacity: 0; } }
+
+/* +++ AÑADIDO: Media Query para mejorar la experiencia en móviles +++ */
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+    min-height: auto; /* En móvil, dejamos que el contenido dicte la altura */
   }
-  .carta {
-    padding: 20px;
+
+  .titulo {
+    font-size: 2.5rem;
+  }
+
+  .juego p {
+    font-size: 1.2rem;
+  }
+  
+  #carta {
+    padding: 2rem 1.5rem; /* Menos padding en los lados */
+    height: auto; /* La altura se ajusta al contenido */
+    max-height: calc(100vh - 2rem); /* Ocupa la pantalla pero con margen */
+  }
+
+  #textoCarta {
     font-size: 1rem;
   }
-  .carrusel {
-    height: 280px;
-  }
-  .heart {
-    --heart-base-size: var(--heart-base-size-mobile);
-    margin-top: calc(var(--heart-base-size-mobile) * 0.3);
-    margin-bottom: calc(var(--heart-base-size-mobile) * 0.1);
-  }
-  .tooltip-text {
-    width: 150px; 
-    font-size: 0.8rem;
-    bottom: calc(100% + 8px); /* Ajustar espacio en móviles */
-  }
-  .heart-music-container {
-    min-height: calc(var(--heart-base-size-mobile) + 60px);
+
+  .countdown-timer {
+    font-size: 1.8rem;
   }
 }
-  
